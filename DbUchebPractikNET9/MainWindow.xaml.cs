@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DbUchebPractikNET9.Data;
 
 namespace DbUchebPractikNET9;
 
@@ -16,8 +17,12 @@ namespace DbUchebPractikNET9;
 /// </summary>
 public partial class MainWindow : Window
 {
-    public MainWindow()
+    public MainWindow(AppDbContext db)
     {
         InitializeComponent();
+        
+        var users = db.Users.ToList();
+        MessageBox.Show($"Подключение работает! Пользователей: {users.Count}");
+
     }
 }
