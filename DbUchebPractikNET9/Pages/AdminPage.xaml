@@ -6,6 +6,11 @@
       mc:Ignorable="d"
       Title="AdminPage" Height="450" Width="800">
     <Grid>
-        
+        <TextBlock Text="Админ-панель"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="32"
+                   FontWeight="Bold"/>
     </Grid>
+
 </Page>
