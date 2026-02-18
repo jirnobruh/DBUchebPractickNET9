@@ -1,28 +1,40 @@
-﻿using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
 using DbUchebPractikNET9.Data;
+using DbUchebPractikNET9.Models;
+using DbUchebPractikNET9.Pages;
 
-namespace DbUchebPractikNET9;
-
-/// <summary>
-/// Interaction logic for MainWindow.xaml
-/// </summary>
-public partial class MainWindow : Window
+namespace DbUchebPractikNET9
 {
-    public MainWindow(AppDbContext db)
+    public partial class MainWindow : Window
     {
-        InitializeComponent();
-        
-        var users = db.Users.ToList();
-        MessageBox.Show($"Подключение работает! Пользователей: {users.Count}");
+        private readonly AppDbContext _db;
 
+        public MainWindow(AppDbContext db)
+        {
+            InitializeComponent();
+            _db = db;
+
+            MainFrame.Navigate(new LoginPage(_db, this));
+        }
+
+        public void NavigateToAdmin(User user)
+        {
+            //MainFrame.Navigate(new AdminPage(_db, user));
+        }
+
+        public void NavigateToManager(User user)
+        {
+            //MainFrame.Navigate(new ManagerPage(_db, user));
+        }
+
+        public void NavigateToTechnician(User user)
+        {
+            //MainFrame.Navigate(new TechnicianPage(_db, user));
+        }
+
+        public void NavigateToClient(User user)
+        {
+            //MainFrame.Navigate(new ClientPage(_db, user));
+        }
     }
 }
