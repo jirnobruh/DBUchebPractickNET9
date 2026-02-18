@@ -19,22 +19,22 @@ namespace DbUchebPractikNET9
 
         public void NavigateToAdmin(User user)
         {
-            //MainFrame.Navigate(new AdminPage(_db, user));
+            MainFrame.Navigate(new AdminPage(_db, user));
         }
 
         public void NavigateToManager(User user)
         {
-            //MainFrame.Navigate(new ManagerPage(_db, user));
+            MainFrame.Navigate(new ManagerPage(_db, user));
         }
 
         public void NavigateToTechnician(User user)
         {
-            //MainFrame.Navigate(new TechnicianPage(_db, user));
+            MainFrame.Navigate(new TechnicianPage(_db, user));
         }
 
         public void NavigateToClient(User user)
         {
-            //MainFrame.Navigate(new ClientPage(_db, user));
+            MainFrame.Navigate(new ClientPage(_db, user));
         }
     }
 }

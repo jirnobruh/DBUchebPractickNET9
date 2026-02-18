@@ -23,13 +23,13 @@
 
             <TextBlock Text="Email" FontSize="16" Margin="0,0,0,5"/>
             <TextBox x:Name="EmailBox"
-                     Height="35"
+                     Height="40"
                      FontSize="16"
                      Padding="8"/>
 
             <TextBlock Text="Пароль" FontSize="16" Margin="0,15,0,5"/>
             <PasswordBox x:Name="PasswordBox"
-                         Height="35"
+                         Height="38"
                          FontSize="16"
                          Padding="8"/>
 
@@ -40,6 +40,10 @@
                     Foreground="White"
                     FontSize="18"
                     Click="LoginButton_Click"/>
+            <Button Content="Регистрация"
+                    Height="40"
+                    Margin="0,25,0,0"
+                    Click="GoToRegister_Click"/>
         </StackPanel>
     </Grid>
 </Page>

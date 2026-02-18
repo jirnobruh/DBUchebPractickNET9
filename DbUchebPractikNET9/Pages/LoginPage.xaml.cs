@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using DbUchebPractikNET9.Data;
 using DbUchebPractikNET9.Helpers;
 using DbUchebPractikNET9.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DbUchebPractikNET9.Pages
 {
@@ -30,7 +31,10 @@ namespace DbUchebPractikNET9.Pages
                 return;
             }
 
-            var user = _db.Users.FirstOrDefault(u => u.Email == email);
+            var user = _db.Users
+                .Include(u => u.Role)
+                .FirstOrDefault(u => u.Email == email);
+
 
             if (user == null || !PasswordHasher.Verify(password, user.PasswordHash))
             {
@@ -45,24 +49,32 @@ namespace DbUchebPractikNET9.Pages
             }
 
             // Переход по ролям
-            switch (user.Role.RoleTitle.ToLower())
+            switch (user.IdRole)
             {
-                case "администратор":
-                    //_main.NavigateToAdmin(user);
+                case 1:
+                    _main.NavigateToAdmin(user);
                     break;
 
-                case "менеджер":
-                    //_main.NavigateToManager(user);
+                case 2:
+                    _main.NavigateToManager(user);
                     break;
 
-                case "техник":
-                    //_main.NavigateToTechnician(user);
+                case 3:
+                    _main.NavigateToTechnician(user);
+                    break;
+
+                case 4:
+                    _main.NavigateToClient(user);
                     break;
 
                 default:
-                    //_main.NavigateToClient(user);
+                    MessageBox.Show("Неизвестная роль пользователя");
                     break;
             }
+        }
+        private void GoToRegister_Click(object sender, RoutedEventArgs e)
+        {
+            _main.MainFrame.Navigate(new RegisterPage(_db, _main));
         }
     }
 }
