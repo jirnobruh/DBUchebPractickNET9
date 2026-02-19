@@ -34,7 +34,7 @@ namespace DbUchebPractikNET9
 
         public void NavigateToClient(User user)
         {
-            MainFrame.Navigate(new ClientPage(_db, user));
+            MainFrame.Navigate(new ClientPage(_db, user, this));
         }
     }
 }

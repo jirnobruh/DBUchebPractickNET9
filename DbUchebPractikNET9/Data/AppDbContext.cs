@@ -65,6 +65,7 @@ namespace DbUchebPractikNET9.Data
                 entity.Property(e => e.Description).HasColumnName("description");
                 entity.Property(e => e.IdCategory).HasColumnName("idcategory");
                 entity.Property(e => e.IdStatus).HasColumnName("idstatus");
+                entity.Property(e => e.PricePerDay).HasColumnName("priceperday");
 
                 entity.HasOne(e => e.Category)
                       .WithMany(c => c.Technics)

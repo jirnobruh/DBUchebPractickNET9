@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace DbUchebPractikNET9.Models
 {
     using System.Collections.Generic;
@@ -16,6 +18,8 @@ namespace DbUchebPractikNET9.Models
 
         public int IdStatus { get; set; }
         public TechnicStatus Status { get; set; }
+        
+        public decimal PricePerDay { get; set; }
 
         public ICollection<OrderItem> OrderItems { get; set; }
         public ICollection<TechnicalService> TechnicalServices { get; set; }
