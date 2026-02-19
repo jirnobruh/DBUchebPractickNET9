@@ -11,15 +11,18 @@ namespace DbUchebPractikNET9.Pages
     {
         private readonly AppDbContext _db;
         private readonly User _currentUser;
+        private readonly MainWindow _main;
 
-        public TechnicianPage(AppDbContext db, User currentUser)
+        public TechnicianPage(AppDbContext db, User currentUser, MainWindow main)
         {
             InitializeComponent();
             _db = db;
             _currentUser = currentUser;
+            _main = main;
 
             LoadTechnic();
         }
+
 
         private void LoadTechnic()
         {
@@ -44,6 +47,11 @@ namespace DbUchebPractikNET9.Pages
             {
                 LoadServiceHistory(technic.TechnicID);
             }
+        }
+        
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            _main.MainFrame.Navigate(new LoginPage(_db, _main));
         }
 
         private void AddService_Click(object sender, RoutedEventArgs e)

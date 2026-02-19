@@ -10,12 +10,22 @@
         <RowDefinition Height="Auto"/>
         <RowDefinition Height="*"/>
     </Grid.RowDefinitions>
+        
+        <!-- Кнопка выхода -->
+        <Button Content="Выйти"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Margin="0 0 10 10"
+                Width="100"
+                Height="35"
+                Click="Logout_Click"/>
 
-    <!-- Заголовок -->
-    <TextBlock Text="Техническое обслуживание"
-               FontSize="28"
-               FontWeight="Bold"
-               Margin="0 0 0 20"/>
+        <!-- Заголовок -->
+        <TextBlock Text="Техническое обслуживание"
+                   FontSize="28"
+                   FontWeight="Bold"
+                   Margin="0 40 0 20"/>
+
 
     <!-- Таблица техники -->
     <DataGrid x:Name="TechnicGrid"

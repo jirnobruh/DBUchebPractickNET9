@@ -29,7 +29,7 @@ namespace DbUchebPractikNET9
 
         public void NavigateToTechnician(User user)
         {
-            MainFrame.Navigate(new TechnicianPage(_db, user));
+            MainFrame.Navigate(new TechnicianPage(_db, user, this));
         }
 
         public void NavigateToClient(User user)
