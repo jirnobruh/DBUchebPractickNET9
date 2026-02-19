@@ -24,7 +24,7 @@ namespace DbUchebPractikNET9
 
         public void NavigateToManager(User user)
         {
-            MainFrame.Navigate(new ManagerPage(_db, user));
+            MainFrame.Navigate(new ManagerPage(_db, user, this));
         }
 
         public void NavigateToTechnician(User user)
