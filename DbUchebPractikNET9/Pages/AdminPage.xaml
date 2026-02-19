@@ -1,16 +1,244 @@
 <Page x:Class="DbUchebPractikNET9.Pages.AdminPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      mc:Ignorable="d"
-      Title="AdminPage" Height="450" Width="800">
-    <Grid>
-        <TextBlock Text="Админ-панель"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   FontSize="32"
-                   FontWeight="Bold"/>
-    </Grid>
+      Background="#FFF2F2F2">
 
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Верхняя панель -->
+        <DockPanel Grid.Row="0" Margin="0 0 0 10">
+            <Button Content="Выйти"
+                    Width="100"
+                    Height="35"
+                    DockPanel.Dock="Right"
+                    Click="Logout_Click"/>
+
+            <TextBlock Text="Администрирование"
+                       FontSize="28"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+        </DockPanel>
+
+        <!-- Вкладки -->
+        <TabControl Grid.Row="1" x:Name="AdminTabs">
+
+            <!-- Пользователи -->
+            <TabItem Header="Пользователи">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <DataGrid x:Name="UsersGrid"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding UserID}" Width="60"/>
+                            <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="150"/>
+                            <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="150"/>
+                            <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="200"/>
+                            <DataGridTextColumn Header="Роль" Binding="{Binding Role.RoleTitle}" Width="150"/>
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 10 0 0">
+                        <Button Content="Изменить роль"
+                                Width="150"
+                                Height="35"
+                                Margin="0 0 10 0"
+                                Click="ChangeRole_Click"/>
+
+                        <Button Content="Удалить"
+                                Width="120"
+                                Height="35"
+                                Click="DeleteUser_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            
+            <!-- Заказы -->
+            <TabItem Header="Заказы">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>   <!-- Фильтры -->
+                        <RowDefinition Height="*"/>     <!-- Таблица -->
+                        <RowDefinition Height="Auto"/>  <!-- Кнопки -->
+                    </Grid.RowDefinitions>
+
+                    <!-- ФИЛЬТРЫ -->
+                    <StackPanel Grid.Row="0"
+                                Orientation="Horizontal"
+                                Margin="0 0 0 10"
+                                HorizontalAlignment="Left">
+
+                        <!-- Поиск по клиенту -->
+                        <TextBox x:Name="AdminSearchClientBox"
+                                 Width="200"
+                                 Height="30"
+                                 Margin="0 0 10 0"
+                                 Text="Поиск по клиенту"/>
+
+                        <!-- Фильтр по статусу -->
+                        <ComboBox x:Name="AdminStatusFilter"
+                                  Width="180"
+                                  Height="30"
+                                  Margin="0 0 10 0"
+                                  Text="Статус"/>
+
+                        <!-- Дата с -->
+                        <DatePicker x:Name="AdminDateFrom"
+                                    Width="150"
+                                    Height="30"
+                                    Margin="0 0 10 0"/>
+
+                        <!-- Дата по -->
+                        <DatePicker x:Name="AdminDateTo"
+                                    Width="150"
+                                    Height="30"
+                                    Margin="0 0 10 0"/>
+
+                        <!-- Кнопка применить -->
+                        <Button Content="Применить"
+                                Width="120"
+                                Height="30"
+                                Click="AdminApplyFilters_Click"/>
+                    </StackPanel>
+
+                    <!-- ТАБЛИЦА ЗАКАЗОВ -->
+                    <DataGrid x:Name="OrdersGrid"
+                              Grid.Row="1"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              SelectionMode="Single">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding OrderID}" Width="60"/>
+                            <DataGridTextColumn Header="Клиент" Binding="{Binding User.FirstName}" Width="150"/>
+                            <DataGridTextColumn Header="Дата" Binding="{Binding OrderDate}" Width="150"/>
+                            <DataGridTextColumn Header="Статус" Binding="{Binding OrderStatus.StatusTitle}" Width="150"/>
+                            <DataGridTextColumn Header="Доставка" Binding="{Binding DeliveryOption.OptionTitle}" Width="150"/>
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+
+                    <!-- КНОПКИ -->
+                    <StackPanel Grid.Row="2"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Right"
+                                Margin="0 10 0 0">
+
+                        <Button Content="Просмотр деталей"
+                                Width="160"
+                                Height="35"
+                                Margin="0 0 10 0"
+                                Click="ViewOrderDetails_Click"/>
+
+                        <Button Content="Изменить статус"
+                                Width="160"
+                                Height="35"
+                                Margin="0 0 10 0"
+                                Click="AdminChangeStatus_Click"/>
+
+                        <Button Content="Удалить"
+                                Width="120"
+                                Height="35"
+                                Click="DeleteOrder_Click"/>
+                    </StackPanel>
+
+                </Grid>
+            </TabItem>
+            
+            <!-- Техника -->
+            <TabItem Header="Техника">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <DataGrid x:Name="TechnicGrid"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding TechnicID}" Width="60"/>
+                            <DataGridTextColumn Header="Название" Binding="{Binding Title}" Width="200"/>
+                            <DataGridTextColumn Header="Категория" Binding="{Binding Category.CategoryTitle}" Width="150"/>
+                            <DataGridTextColumn Header="Статус" Binding="{Binding Status.StatusTitle}" Width="150"/>
+                            <DataGridTextColumn Header="Цена/день" Binding="{Binding PricePerDay}" Width="120"/>
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 10 0 0">
+                        <Button Content="Добавить"
+                                Width="120"
+                                Height="35"
+                                Margin="0 0 10 0"
+                                Click="AddTechnic_Click"/>
+
+                        <Button Content="Редактировать"
+                                Width="120"
+                                Height="35"
+                                Margin="0 0 10 0"
+                                Click="EditTechnic_Click"/>
+
+                        <Button Content="Удалить"
+                                Width="120"
+                                Height="35"
+                                Click="DeleteTechnic_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <!-- Категории -->
+            <TabItem Header="Категории">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <DataGrid x:Name="CategoryGrid"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding CategoryID}" Width="60"/>
+                            <DataGridTextColumn Header="Название" Binding="{Binding CategoryTitle}" Width="200"/>
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 10 0 0">
+                        <Button Content="Добавить"
+                                Width="120"
+                                Height="35"
+                                Margin="0 0 10 0"
+                                Click="AddCategory_Click"/>
+
+                        <Button Content="Редактировать"
+                                Width="120"
+                                Height="35"
+                                Margin="0 0 10 0"
+                                Click="EditCategory_Click"/>
+
+                        <Button Content="Удалить"
+                                Width="120"
+                                Height="35"
+                                Click="DeleteCategory_Click"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
 </Page>

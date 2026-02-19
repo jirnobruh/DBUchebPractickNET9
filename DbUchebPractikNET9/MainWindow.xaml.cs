@@ -19,7 +19,7 @@ namespace DbUchebPractikNET9
 
         public void NavigateToAdmin(User user)
         {
-            MainFrame.Navigate(new AdminPage(_db, user));
+            MainFrame.Navigate(new AdminPage(_db, user, this));
         }
 
         public void NavigateToManager(User user)
