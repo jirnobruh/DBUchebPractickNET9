@@ -23,7 +23,6 @@ namespace DbUchebPractikNET9.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // USERS
             modelBuilder.Entity<User>(entity =>
             {
                 entity.ToTable("users");
@@ -44,7 +43,6 @@ namespace DbUchebPractikNET9.Data
                       .HasForeignKey(e => e.IdRole);
             });
 
-            // ROLES
             modelBuilder.Entity<Role>(entity =>
             {
                 entity.ToTable("roles");
@@ -54,7 +52,6 @@ namespace DbUchebPractikNET9.Data
                 entity.Property(e => e.RoleTitle).HasColumnName("roletitle");
             });
 
-            // TECHNIC
             modelBuilder.Entity<Technic>(entity =>
             {
                 entity.ToTable("technic");
@@ -76,7 +73,6 @@ namespace DbUchebPractikNET9.Data
                       .HasForeignKey(e => e.IdStatus);
             });
 
-            // TECHNIC CATEGORY
             modelBuilder.Entity<TechnicCategory>(entity =>
             {
                 entity.ToTable("techniccategory");
@@ -87,7 +83,6 @@ namespace DbUchebPractikNET9.Data
                 entity.Property(e => e.Description).HasColumnName("description");
             });
 
-            // TECHNIC STATUS
             modelBuilder.Entity<TechnicStatus>(entity =>
             {
                 entity.ToTable("technicstatus");
@@ -97,7 +92,6 @@ namespace DbUchebPractikNET9.Data
                 entity.Property(e => e.StatusTitle).HasColumnName("statustitle");
             });
 
-            // DELIVERY OPTIONS
             modelBuilder.Entity<DeliveryOption>(entity =>
             {
                 entity.ToTable("deliveryoptions");
@@ -108,7 +102,6 @@ namespace DbUchebPractikNET9.Data
                 entity.Property(e => e.Description).HasColumnName("description");
             });
 
-            // ORDER STATUS
             modelBuilder.Entity<OrderStatus>(entity =>
             {
                 entity.ToTable("orderstatus");
@@ -118,7 +111,6 @@ namespace DbUchebPractikNET9.Data
                 entity.Property(e => e.StatusTitle).HasColumnName("statustitle");
             });
 
-            // ORDERS
             modelBuilder.Entity<Order>(entity =>
             {
                 entity.ToTable("orders");
@@ -145,7 +137,6 @@ namespace DbUchebPractikNET9.Data
                       .HasForeignKey(e => e.IdOrderStatus);
             });
 
-            // ORDER ITEMS
             modelBuilder.Entity<OrderItem>(entity =>
             {
                 entity.ToTable("orderitems");
@@ -166,7 +157,6 @@ namespace DbUchebPractikNET9.Data
                       .HasForeignKey(e => e.IdTechnic);
             });
 
-            // TECHNICAL SERVICE
             modelBuilder.Entity<TechnicalService>(entity =>
             {
                 entity.ToTable("technicalservices");
@@ -187,7 +177,6 @@ namespace DbUchebPractikNET9.Data
                       .HasForeignKey(e => e.IdPerformedUser);
             });
 
-            // CART
             modelBuilder.Entity<Cart>(entity =>
             {
                 entity.ToTable("cart");
@@ -201,7 +190,6 @@ namespace DbUchebPractikNET9.Data
                       .HasForeignKey<Cart>(e => e.IdUser);
             });
 
-            // CART ITEMS
             modelBuilder.Entity<CartItem>(entity =>
             {
                 entity.ToTable("cartitems");
