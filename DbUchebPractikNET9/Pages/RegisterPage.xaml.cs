@@ -48,7 +48,7 @@ namespace DbUchebPractikNET9.Pages
                 Email = email,
                 PasswordHash = PasswordHasher.Hash(password),
                 CreatedAt = DateTime.UtcNow,
-                IdRole = 4 // допустим, 4 — это клиент
+                IdRole = 3
             };
 
             _db.Users.Add(user);

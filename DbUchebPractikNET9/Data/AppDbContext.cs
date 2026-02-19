@@ -38,9 +38,11 @@ namespace DbUchebPractikNET9.Data
                 entity.Property(e => e.CreatedAt).HasColumnName("createdat");
                 entity.Property(e => e.IdRole).HasColumnName("idrole");
 
-                entity.HasOne(e => e.Role)
-                      .WithMany(r => r.Users)
-                      .HasForeignKey(e => e.IdRole);
+                modelBuilder.Entity<User>()
+                    .HasOne(u => u.Role)
+                    .WithMany(r => r.Users)
+                    .HasForeignKey(u => u.IdRole);
+
             });
 
             modelBuilder.Entity<Role>(entity =>

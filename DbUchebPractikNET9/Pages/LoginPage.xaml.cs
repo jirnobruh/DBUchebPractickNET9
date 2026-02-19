@@ -60,11 +60,11 @@ namespace DbUchebPractikNET9.Pages
                     break;
 
                 case 3:
-                    _main.NavigateToTechnician(user);
+                    _main.NavigateToClient(user);
                     break;
 
                 case 4:
-                    _main.NavigateToClient(user);
+                    _main.NavigateToTechnician(user);
                     break;
 
                 default:
